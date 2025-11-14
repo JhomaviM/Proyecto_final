@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `estrategia` (
 	PRIMARY KEY(`cod_estrategia`)
 );
 
-DROP TABLE `programas_formacion`;
+
 CREATE TABLE IF NOT EXISTS `programas_formacion` (
 	`cod_programa` INT UNSIGNED NOT NULL UNIQUE,
 	`version` CHAR(4),
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `programas_formacion` (
 
 CREATE TABLE IF NOT EXISTS `grupos` (
 	`ficha` INTEGER UNSIGNED NOT NULL UNIQUE,
-	`cod_programa` MEDIUMINT UNSIGNED,
+	`cod_programa` INT UNSIGNED,
 	`cod_centro` SMALLINT UNSIGNED,
 	`modalidad` VARCHAR(80),
 	`jornada` VARCHAR(80),
@@ -89,3 +89,5 @@ CREATE TABLE IF NOT EXISTS `grupos` (
     FOREIGN KEY(`cod_estrategia`) REFERENCES `estrategia`(`cod_estrategia`)
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+DROP TABLE `programas_formacion`;

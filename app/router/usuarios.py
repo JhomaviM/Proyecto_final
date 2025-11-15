@@ -14,11 +14,11 @@ router = APIRouter() # creando objeto router de la clase APIRouter()
 def create_user(
     user: CrearUsaurio,
     db: Session = Depends(get_db), #Depends funciona como una condición para que continue la ejecución, en este caso se condiciona a que continue la funcion create_user a que esté get_db
-    user_token: RetornarUsuario = Depends(get_current_user) # linea o argumento que pide la funcion para proteger el endpoint
+    # user_token: RetornarUsuario = Depends(get_current_user) # linea o argumento que pide la funcion para proteger el endpoint
 ): 
     try:
-        if user_token.id_rol != 1:# condicion para controlar el tipo de usuario que puede crear usuarios
-            raise HTTPException(status_code=401, detail="No tienes permisos")
+        # if user_token.id_rol != 1:# condicion para controlar el tipo de usuario que puede crear usuarios
+        #     raise HTTPException(status_code=401, detail="No tienes permisos")
         crud_users.create_user(db, user)
         return {"message": "Usuario creado correctamente"}
     except Exception as e:

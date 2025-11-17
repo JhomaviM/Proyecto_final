@@ -207,5 +207,5 @@ def get_all_user(db: Session):
         return result
     
     except SQLAlchemyError as e:
-        logger.error(f"Error al bucar usuario por id: {e}")
+        logger.error(f"Error al bucar usuario: {e}")
         raise Exception("Error de base de datos al buscar el usuario")

@@ -30,3 +30,19 @@ def get_programa_by_cod(db: Session, cod: int):
     except SQLAlchemyError as e:
         logger.error(f"Error al consultar programa: {e}")
         raise Exception("Error de base de datos al consultar programa")
+
+
+def get_all_programas(db: Session):
+    try:
+        query = text("""
+            SELECT programas_formacion.cod_programa, programas_formacion.version, 
+                   programas_formacion.nombre, programas_formacion.nivel, programas_formacion.id_red, 
+                   programas_formacion.tiempo_duracion, programas_formacion.unidad_medida, programas_formacion.estado, programas_formacion.url_pdf
+            FROM programas_formacion
+        """)
+        result = db.execute(query).mappings().all()
+        return result
+    
+    except SQLAlchemyError as e:
+        logger.error(f"Error al buscar programa: {e}")
+        raise Exception("Error de base de datos al buscar los programas")
